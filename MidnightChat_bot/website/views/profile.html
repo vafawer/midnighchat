@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Job boards - Profile</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
+
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,700' rel='stylesheet' type='text/css'>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.9/themes/start/jquery-ui.css" type="text/css" media="all" />
+
+</head>
+
+<body>
+<section class="ftco-section">
+
+        <div class="container">
+            <div class = "row marginSigninButton no-gutters">
+                <div class="dropdown">
+                    <button class="btn btn-light btn_BiggerCircle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+                            <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+                            <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+                          </svg>
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                      <a class="dropdown-item" href="#">Sign out</a>
+                      <!-- <a class="dropdown-item" href="#">Something else here</a> -->
+                    </div>
+                </div>
+                <div class="offset-1">
+                    <a href="/" type="button" class="a_btnBigger btn-light">Go Back</a>
+                </div>
+            </div>
+
+            <div class="tab-content" id="myTabContent">
+                <div class="tab-pane fade show active" id="Signin" style="display: block;">
+                    <div class="containerProfile contact-wrap bg-white">
+                        <div class="row">
+                            <div class="col-md-3 border-right">
+                                <div class="d-flex flex-column align-items-center text-center p-3 py-5"><img class="rounded-circle mt-5" width="150px" src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg"><span class="font-weight-bold">Edogaru</span><span class="text-black-50">edogaru@mail.com.my</span><span> </span></div>
+                            </div>
+                            <div class="col-md-9">
+                                <div class="p-3 py-5">
+                                    <div class="d-flex justify-content-between align-items-center mb-3">
+                                        <h4 class="text-right">Profile Settings</h4>
+                                    </div>
+                                    <div class="row mt-3">
+                                        <div class="col-md-6"><label class="labels">First Name</label><input type="text" class="form-control" placeholder="First name" value=""></div>
+                                        <div class="col-md-6"><label class="labels">Last Name</label><input type="text" class="form-control" value="" placeholder="Last Name"></div>
+                                    </div>
+                                    <div class="row mt-3">
+                                        <div class="col-md-12"><label class="labels">Phone Number</label><input type="text" class="form-control" placeholder="Phone number" value=""></div>
+                                        <div class="col-md-12"><label class="labels">Email</label><input type="text" class="form-control" placeholder="Email" value=""></div>
+                                    </div>
+                                    <div class="mt-5 text-center">
+                                        <button class="btn btn-primary profile-button w-fixedpx" type="button">Save Profile</button>
+                                        <input class="btn btn-primary w-fixedpx" type="button" value="Change the password" onclick="switchVisible();"/> 
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade show" id="registration" style="display: none;">
+                    <div class="containerProfile contact-wrap bg-white">
+                        <div class="row">
+                            <div class="col-md-3 border-right">
+                                <div class="d-flex flex-column align-items-center text-center p-3 py-5"><img class="rounded-circle mt-5" width="150px" src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg"><span class="font-weight-bold">Edogaru</span><span class="text-black-50">edogaru@mail.com.my</span><span> </span></div>
+                            </div>
+                            <div class="col-md-9">
+                                <div class="p-3 py-5">
+                                    <div class="d-flex justify-content-between align-items-center mb-3">
+                                        <h4 class="text-right">Change the Password</h4>
+                                    </div>
+                                    <div class="row mt-3">
+                                        <div class ="col-md-12"><label class="labels">Existing password</label><input type="password" class="form-control" placeholder="Password *" value="" /></div>
+                                        <div class ="col-md-12 mt-3"><label class="labels">New password</label><input type="password" class="form-control" placeholder="Password *" value="" /></div>
+                                        <div class ="col-md-12"><label class="labels">Confirm new password</label><input type="password" class="form-control"  placeholder="Confirm Password *" value="" /></div>
+                                    </div>
+
+                                    <div class="mt-5 text-center">
+                                        <button class="btn btn-primary profile-button w-fixedpx" type="button">Save new password</button>
+                                        <input class="btn btn-primary w-fixedpx" type="button" value="Go back to profile" onclick="switchVisible();"/> 
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</section>
+
+
+
+           <!--  <div class="containerProfile contact-wrap bg-white mt-5 mb-5">
+                <div class="row">
+                    <div class="col-md-3 border-right">
+                        <div class="d-flex flex-column align-items-center text-center p-3 py-5"><img class="rounded-circle mt-5" width="150px" src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg"><span class="font-weight-bold">Edogaru</span><span class="text-black-50">edogaru@mail.com.my</span><span> </span></div>
+                    </div>
+                    <div class="col-md-9">
+                        <div class="p-3 py-5">
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <h4 class="text-right">Profile Settings</h4>
+                            </div>
+                            <div class="row mt-2">
+                                <div class="col-md-6"><label class="labels">First Name</label><input type="text" class="form-control" placeholder="First name" value=""></div>
+                                <div class="col-md-6"><label class="labels">Last Name</label><input type="text" class="form-control" value="" placeholder="Last Name"></div>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col-md-12"><label class="labels">Phone Number</label><input type="text" class="form-control" placeholder="Phone number" value=""></div>
+                                <div class="col-md-12"><label class="labels">Email</label><input type="text" class="form-control" placeholder="Email" value=""></div>
+                            </div>
+                            <div class="d-flex justify-content-between align-items-center mb-3 pt-4">
+                                <h4 class="text-right">Password Changing</h4>
+                            </div>
+                                <label class="labels">Existing password</label><input type="password" class="form-control" placeholder="Password *" value="" />
+                                <label class="labels">New password</label><input type="password" class="form-control" placeholder="Password *" value="" />
+                                <label class="labels">Confirm new password</label><input type="password" class="form-control"  placeholder="Confirm Password *" value="" />
+                                <div class="mt-5 text-center"><button class="btn btn-primary profile-button" type="button">Save Profile</button></div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+</section>
+
+
+    <script src="js/jquery.min.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/popper.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery.validate.min.js"></script>
+    <script>
+
+        function switchVisible() {
+                    if (document.getElementById('registration')) {
+
+                        if (document.getElementById('registration').style.display == 'none') {
+                            document.getElementById('registration').style.display = 'block';
+                            document.getElementById('Signin').style.display = 'none';
+                        }
+                        else {
+                            document.getElementById('registration').style.display = 'none';
+                            document.getElementById('Signin').style.display = 'block';
+                        }
+                    }
+        }
+
+        //look if apply button has been clicked
+        // if yes use sendData function
+        var button = document.getElementById("applyButton");
+        button.addEventListener("click", sendData);
+
+
+        function sendData() {
+
+            $('#applicationForm').submit(function(e) {
+                e.preventDefault();
+
+                const data = $("form").serializeArray();
+
+                const obj = {};
+
+                function toJson(arr) {
+
+                    arr.map((element) => {
+                        obj[element.name] = element.value;
+                    })
+                }
+                toJson(data);
+
+                const domain = "localhost";
+
+                fetch(`http://${domain}:3000/app/new`, {
+                    // mode: "no-cors",
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    method: 'POST',
+                    body: JSON.stringify(obj)
+
+                });
+
+            });
+        };
+    </script>
+</body>
+
+</html>

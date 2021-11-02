@@ -1,0 +1,509 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Job boards - Users table</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
+
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,700' rel='stylesheet' type='text/css'>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <link rel="stylesheet" href="../css/style.css">
+
+    <link rel="stylesheet" href="../css/styleAdmin.css">
+
+    <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.9/themes/start/jquery-ui.css" type="text/css" media="all" />
+    
+
+
+    <!-- For Data Tables -->
+
+    <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
+
+    <!-- **************************************************************** -->
+</head>
+
+<body class= "bgForSection whenNoFullscreen">
+    <section class="ftco-section bgForSection">
+        <!-- First ad -->
+            <div class="col-md-12">
+                <div class="containerAdmin">
+                        <div class="row marginSigninButton no-gutters">
+                            <div class="dropdown">
+                                <button class="btn btn-light btn_BiggerCircle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+                                        <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+                                        <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+                                      </svg>
+                                </button>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                  <a class="dropdown-item" href="/profile">Profile Settings</a>
+                                  <a class="dropdown-item" href="#">Sign out</a>
+                                  <!-- <a class="dropdown-item" href="#">Something else here</a> -->
+                                </div>
+                            </div>
+                            <div class="offset-1">
+                                <a class="a_btnBigger btn-light" type="button" href="/admin">
+                                    <div style="display: inline"  class="sb-nav-link-icon"><i style="display: inline" class="fas fa-folder-plus"></i></div>
+                                    Hub
+                                </a>
+                            </div>
+                            <div class="offset-0">
+                                    <a class="a_btnBigger btn-light" type="button" href="users">
+                                        <div style="display: inline" class="sb-nav-link-icon"><i style="display: inline" class="fas fa-user-alt"></i></div>
+                                        Users
+                                    </a>
+                            </div>
+                            <div class="offset-0">
+                                <a class="a_btnBigger btn-light" type="button" href="ads">
+                                    <div style="display: inline" class="sb-nav-link-icon"><i style="display: inline" class="fas fa-ad"></i></div>
+                                    Advertisements
+                                </a>
+                            </div>
+                            <div class="offset-0">
+                                    <a class="a_btnBigger btn-light" type="button" href="apps">
+                                        <div style="display: inline"  class="sb-nav-link-icon"><i style="display: inline" class="fas fa-folder-plus"></i></div>
+                                        Applications
+                                    </a>
+                            </div>
+                        </div>
+                            <div class="contact-wrap w-100 p-md-5 p-4">
+                                <div class="col-md-12">
+
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <h1 class ="mb-4">Users</h1>
+                                        </div>
+                                        <div class="col-6 d-flex justify-content-end">
+                                            <button type="button"  onclick="createFunction(), sendDataToAdd()" class="btn btn-primary align-self-center">+ add user</button>
+                                        </div>                              
+                                    </div>
+                                    <table id="datatablesSimple" class="table-hover">
+                                    <thead class="thead-dark">
+                                        <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">First Name</th>
+                                        <th scope="col">Last Name</th>
+                                        <th scope="col">Gender</th>
+                                        <th scope="col">Email</th>
+                                        <th scope="col">Phone</th>
+                                        <th scope="col" class="text-end">Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    <% users.forEach(function(user) { %>
+                                        <tr>
+                                        <th scope="row"><%= user.id %></th>
+                                        <td><%= user.firstName %></td>
+                                        <td><%= user.lastName %></td>
+                                        <td><%= user.gender %></td>
+                                        <td><%= user.email %></td>
+                                        <td><%= user.phone %></td>
+                                        <td class="text-end">
+                                            <div class="row">
+                                                <div>
+                                                    <button onclick="updateFunction(`<%= user.id %>`, `<%= user.firstName %>`, `<%= user.lastName %>`, `<%= user.gender %>`, `<%= user.email %>`, `<%= user.phone %>`);
+                                                                     sendDatatoUpdate('<%= user.id %>')" 
+                                                                     type="button" class="btn btn-primary btn-small"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-fill" viewBox="0 0 16 16">
+                                                                        <path d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z"/>
+                                                                      </svg></button>
+                                                </div>
+                                                <div class ="offset-0">
+                                                    <button  onclick="deleteFunction('<%= user.id %>')"type="button" class="btn btn-primary btn-small"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
+                                                        <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"/>
+                                                      </svg></button>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        </tr>
+                                    <% }) %>
+                                    </tbody>
+                                    </table>
+
+                                </div>
+                            </div>
+
+    </section>
+    <div id="createNew"></div>
+    <div id="updateThe"></div>
+
+<!--     <script src="https://rawgit.com/jackmoore/autosize/master/dist/autosize.min.js"></script> -->
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    
+    <!-- Data Tables -->    
+    <script src="../js/scripts.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
+    <script src="../js/datatables-simple-demo.js"></script>
+
+    <script src="../js/jquery.min.js"></script>
+    <script src="../js/main.js"></script>
+    <script src="../js/popper.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/jquery.validate.min.js"></script>
+    
+<!--     <script src="../js/forDataTables/jquery.dataTables.min.js">f</script>
+    <script src="../js/forDataTables/dataTables.select.min.js"></script>
+    <script src="../js/forDataTables/dataTables.editor.min.js"></script>
+    <script src="../js/forDataTables/dataTables.dateTime.min.js"></script>
+    <script src="../js/forDataTables/dataTables.buttons.min.js"></script> -->
+
+    <script>
+        var scrollPosition = window.pageYOffset;
+    </script>
+    <script>
+        function createFunction() {
+            document.getElementById("createNew").innerHTML =
+            `<div class="bg-modal scroll="no">
+                <div class="container opacityOff PopupPanel register ">
+                    <div class = "centered">
+                        <div class="contact-wrap w-100 p-md-5 h-fixedpx">
+                            <div class="marginForSwitch">
+                                <button onclick="closeAddForm()" class="close" type="button"></button>
+                            </div>
+                            <div class="tab-content">
+                                <div class="tab-pane fade show marginRegistrationAdmin opacityOff PopupPanel" style="display: block;">
+                                    <div class="marginForSwitch">                               
+                                        <ul class="nav nav-tabs nav-justified" id="myTab" role="tablist">
+                                            <li class="nav-item">
+                                                <a class="nav-link active" "id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home"  aria-selected="true">Employee</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false" >Hirer</a>
+                                            </li>
+                                        </ul> 
+                                    </div>
+                                    <div class="tab-content" id="myTabContent">
+                                        <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                                            <div class ="col-md-12">
+                                                <h3 class="register-heading">Register your account</h3>
+                                                <form id="createNewUserAsEmployee">
+                                                    <div class="row register-form">
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <input type="text" name="firstName" class="form-control" placeholder="First Name *" value="" />
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <input type="email" name="email" class="form-control" placeholder="Your Email *" value="" />
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <input type="password" name="password" class="form-control" placeholder="Password *" value="" />
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <div class="maxl">
+                                                                    <label class="radio inline"> 
+                                                                        <input type="radio" name="gender" value="male" checked>
+                                                                        <span> Male </span> 
+                                                                    </label>
+                                                                    <label class="radio inline"> 
+                                                                        <input type="radio" name="gender" value="female">
+                                                                        <span>Female </span> 
+                                                                    </label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <input type="text" name="lastName" class="form-control" placeholder="Last Name *" value="" />
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <input type="text" name="phone" minlength="10" maxlength="10" class="form-control" placeholder="Your Phone *" value="" />
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <input type="password" name="confirmationPassword" class="form-control"  placeholder="Confirm Password *" value="" />
+                                                            </div>
+                                                            <input id="roleEmployee" name="roles" type="hidden" value="user">
+                                                            <input type="submit" class="btn btn-primary"  value="Register"/>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                        <div class="tab-pane fade show" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                                            <div class ="col-md-12">
+                                                <h3  class="register-heading">Register as a Hirer</h3>
+                                                <form id="createNewUserAsHirer">
+                                                    <div class="row register-form">
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <input type="text" name="firstName" class="form-control" placeholder="First Name *" value="" />
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <input type="email" name="email" class="form-control" placeholder="Your Email *" value="" />
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <input type="password" name="password" class="form-control" placeholder="Password *" value="" />
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <div class="maxl">
+                                                                    <label class="radio inline"> 
+                                                                        <input type="radio" name="gender" value="male" checked>
+                                                                        <span> Male </span> 
+                                                                    </label>
+                                                                    <label class="radio inline"> 
+                                                                        <input type="radio" name="gender" value="female">
+                                                                        <span>Female </span> 
+                                                                    </label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <input type="text" name="lastName" class="form-control" placeholder="Last Name *" value="" />
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <input type="text" name="phone" maxlength="10" minlength="10" class="form-control" placeholder="Your Phone *" value="" />
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <input type="password" name="confirmationPassword" class="form-control" placeholder="Confirm Password *" value="" />
+                                                            </div>
+                                                            <input id="roleEmployer" name="roles" type="hidden" value="employer">
+                                                            <input type="submit" class="btn btn-primary"  value="Register"/>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div> 
+                                    </div>
+                                </div>
+                            </div>
+                        </div> 
+                    <div>   
+                </div>
+            </div>`;
+
+            /* Disable Scroll*/
+            var $body = $(document.body);
+            var oldWidth = $body.innerWidth();
+            scrollPosition = window.pageYOffset;
+            $body.css('overflow', 'hidden');
+            $body.css('top', `-${scrollPosition}px`);
+            $body.css('position', 'fixed');
+            $body.width(oldWidth);
+        }
+    </script>
+    <script>
+        function closeAddForm() {
+            document.getElementById("createNew").innerHTML = "";
+            
+            /* Enable Scroll*/
+            var $body = $(document.body);
+            $body.css('overflow', '');
+            $body.css('position', '');
+            $body.css('top', '');
+            $body.width('');
+            window.scrollTo(scrollPosition, scrollPosition);
+        } 
+    </script>
+    <script>
+
+       function sendDataToAdd() {
+
+                $('#createNewUserAsEmployee').submit(function (e) {
+
+                e.preventDefault();
+
+                const data = $('#createNewUserAsEmployee').serializeArray();
+
+                const obj = {};
+
+
+                    function toJson(arr) {
+
+                        arr.map((element) => {
+                            if (element.name === "roles") {
+                                        obj[element.name] = [element.value];
+                                } else {
+                                        obj[element.name] = element.value;
+                                }
+
+                            })
+                    }
+                    toJson(data);
+
+                    const domain = "localhost";
+
+                    fetch(`http://${domain}:3000/signup`, {
+                        // mode: "no-cors ",
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        method: 'POST',
+                        body: JSON.stringify(obj)
+
+                    });
+                    setInterval(function(){window.location.reload()}, 500); 
+                });
+                 
+
+                $('#createNewUserAsHirer').submit(function (e) {
+
+                    e.preventDefault();
+
+                    const data = $('#createNewUserAsHirer').serializeArray();
+                    const obj = {};
+
+                    function toJson(arr) {
+
+                        arr.map((element) => {
+                            if (element.name === "roles") {
+                                obj[element.name] = [element.value];
+                            } else {
+                                obj[element.name] = element.value;
+                            }
+
+                        })
+                    }
+                    toJson(data);
+
+                    const domain = "localhost";
+
+                    fetch(`http://${domain}:3000/signup`, {
+                        // mode: "no-cors ",
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        method: 'POST',
+                        body: JSON.stringify(obj)
+
+                    });
+                    setInterval(function(){window.location.reload()}, 500); 
+                });
+       };
+    </script> 
+    <script>
+        function updateFunction(id, firstName, lastName, gender, email, phone) {
+            
+            document.getElementById("updateThe").innerHTML =
+            `<div class="bg-modal scroll="no">
+                <div class="containerProfile contact-wrap bg-white opacityOff PopupPanel">
+                    <div class="col-md-12">
+                        <form id="`+ id +`updateForm">
+                            <div class="contactForm">
+                                <div class="p-3 py-5">
+                                    <div class="row no-gutters">
+                                        <div class="form-group col-md-11 no-gutters">
+                                            <h3>Profile Settings</h3>
+                                        </div>
+                                        <div class="form-group col-md-1 no-gutters">
+                                        <button onclick="closeUpdateForm()" class="close" type="button"></button>
+                                        </div>
+                                    </div>
+                                    <div class="row mt-3">
+                                        <div class="col-md-6 form-group"><label class="label">First Name</label><input name="firstName" type="text" class="form-control" placeholder="First name" value="`+ firstName +`"></div>
+                                        <div class="col-md-6 form-group"><label class="label">Last Name</label><input name="lastName" type="text" class="form-control"  placeholder="Last Name" value="`+ lastName +`"></div>
+                                    </div>
+                                    <div class="row mt-3">
+                                        <div class="col-md-12 form-group"><label class="label">Phone Number</label><input name="phone" type="text" class="form-control" minlength="10" maxlength="10" placeholder="Phone number" value="`+ phone +`"></div>
+                                        <div class="col-md-12 form-group"><label class="label">Email</label><input name="email" type="text" class="form-control" placeholder="Email" value="`+ email +`"></div>
+                                    </div>
+                                    <div class="mt-5 text-center">
+                                        <input  id="submitButton" type="submit" class="btn btn-primary profile-button w-fixedpx" value="Save changes"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>   
+                    </div>
+                </div>
+            </div>`;
+            document.getElementById(id + 'updateForm').reset();
+
+            /* Disable Scroll*/
+            var $body = $(document.body);
+            var oldWidth = $body.innerWidth();
+            scrollPosition = window.pageYOffset;
+            $body.css('overflow', 'hidden');
+            $body.css('top', `-${scrollPosition}px`);
+            $body.css('position', 'fixed');
+            $body.width(oldWidth);
+        }
+    </script>
+    <script>
+        function closeUpdateForm() {
+            document.getElementById("updateThe").innerHTML = "";
+
+            /* Enable Scroll*/
+            var $body = $(document.body);
+            $body.css('overflow', '');
+            $body.css('position', '');
+            $body.css('top', '');
+            $body.width('');
+            window.scrollTo(scrollPosition, scrollPosition);
+        } 
+    </script>
+    <script>
+
+
+        function sendDatatoUpdate(id) {
+
+            $("#" + id + "updateForm").submit(function(e) {
+                e.preventDefault();
+
+                const data = $("#" + id + "updateForm").serializeArray();
+
+                const obj = {};
+
+                function toJson(arr) {
+
+                    arr.map((element) => {
+                        obj[element.name] = element.value;
+                    })
+                }
+                toJson(data);
+
+                const domain = "localhost";
+                const afterAds = id;
+
+                fetch(`http://${domain}:3000/users/${afterAds}`, {
+                    // mode: "no-cors",
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    method: 'PUT',
+                    body: JSON.stringify(obj)
+
+                });
+                setInterval(function(){window.location.reload()}, 500);
+            });
+        };
+    </script>
+    <script>
+        function deleteFunction(id) 
+        {
+            swal({
+            title: "Are you sure you want to delete this user?",
+            text: "Once deleted, you will not be able to recover this user!",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+            })
+            .then((willDelete) => {
+            if (willDelete) {
+                swal("", {
+                icon: "success",
+                });
+                const domain = "localhost";
+                    var afterAds = id;
+
+                    fetch(`http://${domain}:3000/users/${afterAds}`, {
+                        // mode: "no-cors",
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        method: 'DELETE'
+                    });
+                    setInterval(function(){window.location.reload()}, 1000);
+            } else {
+                return false;
+            }
+            });
+        };
+    </script>
+
+</script>
+</body>
+
+</html>

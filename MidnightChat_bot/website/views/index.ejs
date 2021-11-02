@@ -1,0 +1,287 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Job boards</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
+
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,700' rel='stylesheet' type='text/css'>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.9/themes/start/jquery-ui.css" type="text/css" media="all" />
+
+</head>
+
+<body>
+    <section class="sectionBtn">
+        
+        <div class="containerBtn">
+            <div class = "row no-gutters">
+                <div class="dropdown offset-1-right">
+                    <button class="btn btn-light btn_BiggerCircle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+                            <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+                            <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+                          </svg>
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                      <a class="dropdown-item" href="/profile">Profile Settings</a>
+                      <a class="dropdown-item" href="#">Sign out</a>
+                      <!-- <a class="dropdown-item" href="#">Something else here</a> -->
+                    </div>
+                </div>
+                <div class ="offset-1-right">
+                    <a href="/signin" type="button" class=" a_btnBigger btn-light">Sign in</a>
+                </div>
+                <!-- tg://resolve?domain=MidnightChat_bot&start= -->
+                <div class ="offset-0-right" onclick="onhover()">
+                    <a href="#" type="button" class="a_btnBigger btn-light">Join Chat</a>
+                </div>
+                <div class ="offset-0-right">
+                    <a href="/admin" type="button" class=" a_btnBigger btn-light">Admin panel</a>
+                </div>
+                <div class ="offset-0-right">
+                    <a href="/hirer" type="button" class=" a_btnBigger btn-light">Hirer panel</a>
+                </div>
+                    <div class="row d-flex justify-content-center align-items-center no-gutters ml-auto">
+                            <div class="search"> <i class="fa fa-search"></i> <input type="text" id="search_input"class="form-control" placeholder="Job title"> </div>
+                    </div>
+            </div>
+        </div>
+    </section>
+    <div id="noting">
+        <section class="sectionMain">
+            <div class="container">
+                <div class="contact-wrap w-100 p-md-5 p-4">
+                    <h4>There is no results!</h4>
+                </div>
+            </div>
+        </section>
+                    
+        
+    <script>
+        var search_input = document.querySelector("#search_input");
+        document.getElementById("noting").style.display = "none";
+
+        search_input.addEventListener("keyup", function(e){
+        var search_item = e.target.value.toLowerCase();
+        var title_items = document.querySelectorAll(".findtitle");
+        var count = 0;
+        title_items.forEach(function(item){
+            if(item.textContent.toLowerCase().indexOf(search_item) != -1){
+                item.closest("section").style.display = "block";
+            }
+            else{
+                item.closest("section").style.display = "none";
+                count++;
+            }
+        })
+        if(count == title_items.length)
+        {
+            document.getElementById("noting").style.display = "block"; 
+        }
+        else
+        {
+            document.getElementById("noting").style.display = "none";
+        }
+
+        });
+
+    </script>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/popper.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery.validate.min.js"></script>
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+    
+    <script>
+        function onhover()
+        {
+            var random = (Math.random() * (999999 - 100000) + 100000).toFixed(0);
+            console.log(random);
+
+
+            const obj = Object.assign({"verif_code": random,"balance": "0" });
+
+
+            console.log(JSON.stringify(obj));
+        
+            const domain = "localhost";
+
+            fetch(`http://${domain}:3000/users/new`, {
+                // mode: "no-cors",
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                method: 'POST',
+                body: JSON.stringify(obj)
+
+            });
+
+
+
+            function click(code)
+            {
+                var link = 'tg://resolve?domain=MidnightChat_bot&start=' + code;
+                location.href = link; 
+                console.log(link);
+                if (location.herf === link)
+                {
+                    return false;
+                }
+            }
+            setInterval(function(){click(random);}, 700);
+
+        }
+    </script>
+
+<!--     <script>
+        function onhover()
+        {
+            var random = Math.random() * (999999 - 100000) + 100000;
+            User.create({
+                "verif_code": random,
+            });
+        }
+    </script> -->
+
+    <script>
+        function showMore(idAd) {
+            var btn = document.getElementById(idAd + "showMoreBtn");
+            var content = document.getElementById(idAd + "showMoreContent");
+        
+            if(btn.innerText == "Learn more"){
+                btn.innerText = "Learn less"; 
+                content.classList.remove('hideContent');
+            } 
+            else {
+                btn.innerText = "Learn more";
+                content.classList.add('hideContent');
+            }
+        }
+    </script>
+    <script>
+    function creatForm(idAd) {
+        document.getElementById(idAd + "ad").innerHTML =
+        '<section class="sectionAplyForm">'+
+            '<div class="container">' +
+                '<div class="contact-wrap w-100 p-md-5 p-4">' +
+                    '<div class="panel panel-primary">' +
+                        '<div class="mb-4 row col-md-12">' +
+                        '<h1>Registration Form</h1>' +
+                        `<button onclick="deleteForm(`+ idAd + `)" class="close" type="button"></button>` +
+                        '</div>' +
+                        '<div class="panel-body">' +
+                            '<form id="'+ idAd +'applicationForm">' +
+                                '<div class="row register-form">' +
+                                    '<div class="col-md-6">' +
+                                        '<div class="form-group">' +
+                                            '<input id="firstName" name="firstName" type="text" class="form-control" placeholder="First Name *" value="" required />' +
+                                        '</div>' +
+                                        '<div class="form-group">' +
+                                            '<input id="email" name="email" type="email" class="form-control" placeholder="Your Email *" value="" required />' +
+                                        '</div>' +
+                                    '</div>' +
+                                    '<div class="col-md-6">' +
+                                        '<div class="form-group">' +
+                                            '<input id="lastName" name="lastName" type="text" class="form-control" placeholder="Last Name *" value="" required />' +
+                                        '</div>' +
+                                        '<div class="form-group">' +
+                                            '<input id="phone" name="phone" type="text" minlength="10" maxlength="10" class="form-control" placeholder="Your Phone *" value="" required />' +
+                                        '</div>' +
+                                    '</div>' +
+                                    '<div class="col-md-12">'+
+                                        '<div class="form-group">' +
+                                            '<textarea id="description" name="description" type="text" class="form-control" class="form-control" placeholder="Tell about your experience *" value="" required ></textarea>' +
+                                        '</div>' +
+                                    '</div>'+
+                                    '<div class="col-md-6">'+
+                                        '<div class="form-group">' +
+                                            '<div class="maxl">' +
+                                                '<label class="radio inline">' +
+                                                    '<input id="male" name="gender" type="radio" value="male" checked>' +
+                                                    '<span> Male</span>' +
+                                                '</label>' +
+                                                '<label class="radio inline offset-0">' +
+                                                    '<input id="female" name="gender" type="radio" value="female">' +
+                                                    '<span> Female </span>' +
+                                                '</label>' +
+                                            '</div>' +
+                                        '</div>' +
+                                    '</div>'+
+                                    '<div class="col-md-6">'+
+                                        '<input type="hidden" name="adID" value="'+ idAd +'"/>' +
+                                        '<input id="submitButton" type="submit" class="btn btn-primary"  value="Submit"/>' +
+                                    '</div>'+
+                                '</div>' +
+                            '</form>' +
+                        '</div>' +
+                    '</div>' +
+                '</div>' +
+            '</section>';
+    }
+    </script>
+    <script>
+    function deleteForm(idAd) {
+        document.getElementById(idAd + "ad").innerHTML = "";
+    } 
+    </script>
+    <script>
+
+
+       function sendData(idAd) {
+
+        $("#" + idAd + "applicationForm").submit(function(e) {
+            e.preventDefault();
+
+            const data = $("#" + idAd + "applicationForm").serializeArray();
+
+            const obj = {};
+
+               function toJson(arr) {
+
+                   arr.map((element) => {
+                       obj[element.name] = element.value;
+                   })
+               }
+               toJson(data);
+
+               const domain = "localhost";
+
+               fetch(`http://${domain}:3000/apps/new`, {
+                   // mode: "no-cors",
+                   headers: {
+                       'Content-Type': 'application/json',
+                   },
+                   method: 'POST',
+                   body: JSON.stringify(obj)
+
+               });
+               document.getElementById(idAd + "ad").innerHTML =
+                `<section class="sectionAplyForm">
+                    <div class="container">
+                        <div class="contact-wrap w-100 p-md-5 p-4">
+                            <div class="panel panel-primary">
+                                    <div class="panel-body centeredAniIcon">
+                                        <lottie-player src="https://assets7.lottiefiles.com/datafiles/SsnntYI9d7Q2zbv/data.json"  background="transparent"  speed="1"  style="width: 300px; height: 300px;"  loop  autoplay></lottie-player>
+                                    </div>
+                            </div>
+                        </div>
+                    </section>`;
+                setInterval(function(){document.getElementById(idAd + "ad").innerHTML = "";}, 5000);
+
+           });
+       };
+   </script> 
+
+    
+</body>
+
+</html>

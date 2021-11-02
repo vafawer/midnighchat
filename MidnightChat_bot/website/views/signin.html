@@ -1,0 +1,315 @@
+
+
+
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Job boards</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
+
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,700' rel='stylesheet' type='text/css'>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.9/themes/start/jquery-ui.css" type="text/css" media="all" />
+
+</head>
+
+<body class="bg-Signin">
+    <section class="ftco-section">
+<div class="container register">
+                <div class="centered">
+                    <div class = " row marginSigninButton no-gutters">
+                        <a href="/" type="button" class="a_btnBigger btn-light">Go Back</a>
+                    </div>
+                    <div class="contact-wrap w-100 p-md-5 h-fixedpx">
+                        <div class="tab-content" id="myTabContent">
+                            <div class="tab-pane fade show active marginSignin" id="Signin" style="display: block;">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <h3 class="heading-color">Sign in</h3>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="email" class="form-control" placeholder="Your Email *" value="" />
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="password" class="form-control" placeholder="Password *" value="" />
+                                    </div>
+                                    <input type="submit" class="btn btn-primary"  value="Sign in"/>
+                                    <div class="row col-md-6 mt-xl-2">
+                                        <div><p>New?</p></div>
+                                        <div class= "offset-0"><input class="btn-link" type="button" value="Start here." onclick="switchVisible(), sendDataToAdd();"/></div>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                            <div class="tab-pane fade show marginRegistration" id="registration" style="display: none;">
+                                <div class="col-md-12">
+                                    <input class="btn btn-primary" type="button" value="Go Back" onclick="switchVisible();"/>                                
+                                    <ul class="nav nav-tabs nav-justified" id="myTab" role="tablist">
+                                        <li class="nav-item">
+                                            <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Employee</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Hirer</a>
+                                        </li>
+                                    </ul> 
+                                </div>
+                                <div class="tab-content" id="myTabContent">
+                                    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                                        <div class ="col-md-12">
+                                            <h3 class="register-heading">Register as an Employee</h3>
+                                            <form id="createNewUserAsEmployee">
+                                                <div class="row register-form">
+    
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <input type="text" name="firstName" id="firstNameEmployee"
+                                                                class="form-control" placeholder="First Name *" value="" />
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <input type="email" name="email" id="emailEmployee"
+                                                                class="form-control" placeholder="Your Email *" value="" />
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <input type="password" name="password" id="passwordEmployee"
+                                                                class="form-control" placeholder="Password *" value="" />
+                                                        </div>
+                                                        <!--                                            
+                                                        <div class="form-group">
+                                                            <select class="form-control">
+                                                                <option class="hidden"  selected disabled>Please select your Sequrity Question</option>
+                                                                <option>What is your Birthdate?</option>
+                                                                <option>What is Your old Phone Number</option>
+                                                                <option>What is your Pet Name?</option>
+                                                            </select>
+                                                        </div> 
+                                                        -->
+                                                        <div class="form-group">
+                                                            <div class="maxl">
+                                                                <label class="radio inline">
+                                                                    <input type="radio" name="gender" id="male" value="male"
+                                                                        checked>
+                                                                    <span> Male </span>
+                                                                </label>
+                                                                <label class="radio inline">
+                                                                    <input type="radio" name="gender" id="female"
+                                                                        value="female">
+                                                                    <span>Female </span>
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <input type="text" name="lastName" id="lastNameEmployee"
+                                                                class="form-control" placeholder="Last Name *" value="" />
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <input type="text" name="phone" id="phoneEmployee"
+                                                                    minlength="10" maxlength="10" name="txtEmpPhone"
+                                                                class="form-control" placeholder="Your Phone *" value="" />
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <input type="password" name="confirmationPassword"
+                                                                id="passwordConfirmationEmployee" class="form-control"
+                                                                placeholder="Confirm Password *" value="" />
+                                                        </div>
+                                                        <input id="roleEmployee" name="roles" type="hidden" value="user">
+                                                        <!-- 
+                                                        <div class="form-group ">
+                                                            <input type="text " class="form-control " placeholder="Enter Your Answer * " value=" " />
+                                                        </div> 
+                                                        -->
+                                                        <input type="submit" class="btn btn-primary" value="Register" />
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane fade show" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                                        <div class ="col-md-12">
+                                            <h3  class="register-heading">Register as a Hirer</h3>
+                                            <form id="createNewUserAsHirer">
+                                                <div class="row register-form">
+    
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <input type="text" name="firstName" id="firstNameEmployer"
+                                                                class="form-control" placeholder="First Name *" value="" />
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <input type="email" name="email" id="emailEmploye"
+                                                                class="form-control" placeholder="Your Email" value="" />
+                                                        </div>
+                                                        <div class=" form-group">
+                                                            <input type="password" name="password" id="passwordEmployer"
+                                                                class="form-control" placeholder="Password *" value="" />
+                                                        </div>
+                                                        <!--                                            
+                                                        <div class="form-group">
+                                                            <select class="form-control">
+                                                                <option class="hidde"  selected disabled>Please select your Sequrity Question</option>
+                                                                <option>What is your Birthdate?</option>
+                                                                <option>What is Your old Phone Number</option>
+                                                                <option>What is your Pet Name?</option>
+                                                            </select>
+                                                        </div> 
+                                                        -->
+                                                        <div class="form-group">
+                                                            <div class="maxl">
+                                                                <label class="radio inline">
+                                                                    <input type="radio" name="gender" id="male" value="male"
+                                                                        checked>
+                                                                    <span> Male </span>
+                                                                </label>
+                                                                <label class="radio inline">
+                                                                    <input type="radio" name="gender" id="female"
+                                                                        value="female">
+                                                                    <span>Female </span>
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <input type="text" name="lastName" id="lastNameEmployer"
+                                                                class="form-control" placeholder="Last Name *" value="" />
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <input type="text" name="phone" id="phoneEmployer"
+                                                                minlength="10" maxlength="10" name="txtEmpPhone"
+                                                                class="form-control" placeholder="Your Phone *" value="" />
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <input type="password" name="confirmationPassword"
+                                                                id="passwordConfirmationEmployer" class="form-control"
+                                                                placeholder="Confirm Password *" value="" />
+                                                        </div>
+                                                        <input id="roleEmployer" name="roles" type="hidden"
+                                                            value="employer">
+                                                        <!-- 
+                                                        <div class="form-grou">
+                                                            <input type="tex" class="form-contro" placeholder="Enter Your Answer" value=" />
+                                                        </div>
+                                                        -->
+                                                        <input type="submit" class="btn btn-primary" value="Register" />
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div> 
+                                </div>
+                            </div>
+                        </div>    
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    <script>
+
+        function switchVisible() {
+                    if (document.getElementById('registration')) {
+
+                        if (document.getElementById('registration').style.display == 'none') {
+                            document.getElementById('registration').style.display = 'block';
+                            document.getElementById('Signin').style.display = 'none';
+                        }
+                        else {
+                            document.getElementById('registration').style.display = 'none';
+                            document.getElementById('Signin').style.display = 'block';
+                        }
+                    }
+        }
+
+    </script>
+        <script>
+
+            function sendDataToAdd() {
+     
+                    $('#createNewUserAsEmployee').submit(function (e) {
+     
+                    e.preventDefault();
+     
+                    const data = $('#createNewUserAsEmployee').serializeArray();
+     
+                    const obj = {};
+     
+     
+                        function toJson(arr) {
+     
+                            arr.map((element) => {
+                                if (element.name === "roles") {
+                                            obj[element.name] = [element.value];
+                                    } else {
+                                            obj[element.name] = element.value;
+                                    }
+    
+                                })
+                        }
+                        toJson(data);
+    
+                        const domain = "localhost";
+    
+                        fetch(`http://${domain}:3000/signup`, {
+                            // mode: "no-cors ",
+                            headers: {
+                                'Content-Type': 'application/json',
+                            },
+                            method: 'POST',
+                            body: JSON.stringify(obj)
+    
+                        });
+                        setInterval(function(){window.location.reload()}, 500); 
+                    });
+                    
+                    $('#createNewUserAsHirer').submit(function (e) {
+    
+                        e.preventDefault();
+    
+                        const data = $('#createNewUserAsHirer').serializeArray();
+                        const obj = {};
+    
+                        function toJson(arr) {
+    
+                            arr.map((element) => {
+                                if (element.name === "roles") {
+                                    obj[element.name] = [element.value];
+                                } else {
+                                    obj[element.name] = element.value;
+                                }
+    
+                            })
+                        }
+                        toJson(data);
+    
+                        const domain = "localhost";
+    
+                        fetch(`http://${domain}:3000/signup`, {
+                            // mode: "no-cors ",
+                            headers: {
+                                'Content-Type': 'application/json',
+                            },
+                            method: 'POST',
+                            body: JSON.stringify(obj)
+    
+                        });
+                        setInterval(function(){window.location.reload()}, 500); 
+                    });
+        };
+        </script> 
+    <script src="js/jquery.min.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/popper.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery.validate.min.js"></script>
+</body>
+
+</html>

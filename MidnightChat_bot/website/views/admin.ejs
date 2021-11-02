@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Job boards - Users table</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
+
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,700' rel='stylesheet' type='text/css'>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <link rel="stylesheet" href="../css/style.css">
+
+    <link rel="stylesheet" href="../css/styleAdmin.scss">
+
+    <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.9/themes/start/jquery-ui.css" type="text/css" media="all" />
+    
+
+
+    <!-- For Data Tables -->
+
+    <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
+
+    <!-- **************************************************************** -->
+</head>
+
+<body class= "bgForSection whenNoFullscreen">
+    <section class="ftco-section bgForSection">
+        <!-- First ad -->
+            <div class="col-md-12">
+                <div class="container">
+                    <div class="row marginSigninButton no-gutters">
+                        <div class="dropdown">
+                            <button class="btn btn-light btn_BiggerCircle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+                                    <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+                                    <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+                                  </svg>
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                              <a class="dropdown-item" href="/profile">Profile Settings</a>
+                              <a class="dropdown-item" href="#">Sign out</a>
+                              <!-- <a class="dropdown-item" href="#">Something else here</a> -->
+                            </div>
+                        </div>
+                        <div class="offset-1">
+                                <a class="a_btnBigger btn-light" type="button" href="/">
+                                    <div style="display: inline" class="sb-nav-link-icon"><i style="display: inline" class="fas fa-user-alt"></i></div>
+                                    Employee's view
+                                </a>
+                        </div>
+                    </div>
+                        <div class="contact-wrap w-100 p-md-5 p-4">
+                            <div class="row mb-4">
+                                <div class="col-md-12"> 
+                                    <a class="btn btn-primary btn-block50" href="admin/users" role="button">
+                                        <div class="textForAdminbtnUsers">Users</div></a>
+                                </div>
+                            </div>
+                            <div class="row">  
+                                <div class="col-md-6">
+                                <a class="btn btn-primary btn-block" href="admin/ads" role="button">
+                                    <div class="textForAdminbtnAdsApps">Advertisements</div></a>
+                                </div>
+                                <div class="col-md-6">
+                                <a class="btn btn-primary btn-block" href="admin/apps" role="button">
+                                    <div class="textForAdminbtnAdsApps">Applications</div></a>
+                                </div>
+                            </div>
+                        </div>
+                                
+
+                </div>
+            </div>
+
+    </section>
+    <div id="createNew"></div>
+    <div id="updateThe"></div>
+
+<!--     <script src="https://rawgit.com/jackmoore/autosize/master/dist/autosize.min.js"></script> -->
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    
+    <!-- Data Tables -->    
+    <script src="../js/scripts.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
+    <script src="../js/datatables-simple-demo.js"></script>
+
+    <script src="../js/jquery.min.js"></script>
+    <script src="../js/main.js"></script>
+    <script src="../js/popper.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/jquery.validate.min.js"></script>
+    
+<!--     <script src="../js/forDataTables/jquery.dataTables.min.js">f</script>
+    <script src="../js/forDataTables/dataTables.select.min.js"></script>
+    <script src="../js/forDataTables/dataTables.editor.min.js"></script>
+    <script src="../js/forDataTables/dataTables.dateTime.min.js"></script>
+    <script src="../js/forDataTables/dataTables.buttons.min.js"></script> -->
+
+    <script>
+        var cw100 = $('.btn-block').width()/1.4;
+        var cw50 = $('.btn-block50').width()/3;
+        $('.btn-block').css({
+            'height': cw100 + 'px'
+        });
+        $('.btn-block50').css({
+            'height': cw50 + 'px'
+        });
+        $('.textForAdminbtnAdsApps').css({
+            'padding-top': cw50/3.5 + 'px'
+        });
+        $('.textForAdminbtnUsers').css({
+            'padding-top': cw50/5 + 'px'
+        });
+        
+
+    </script>
+</body>
+
+</html>

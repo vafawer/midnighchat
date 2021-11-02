@@ -1,0 +1,567 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Job boards</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
+
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,700' rel='stylesheet' type='text/css'>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.9/themes/start/jquery-ui.css" type="text/css" media="all" />
+
+    <!-- For Data Tables -->
+
+    <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
+
+</head>
+
+<body>
+    <section class="sectionBtn">
+        <div class="containerBtn">
+            <div class="row no-gutters">
+                <div class="dropdown">
+                    <button class="btn btn-light btn_BiggerCircle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+                            <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+                            <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+                          </svg>
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                      <a class="dropdown-item" href="/profile">Profile Settings</a>
+                      <a class="dropdown-item" href="#">Sign out</a>
+                      <!-- <a class="dropdown-item" href="#">Something else here</a> -->
+                    </div>
+                </div>
+                <div class = "offset-1">    
+                    <button id="adBtn" type="button" onclick="createAd(), sendData()" class="btn btn-light btn_Bigger">+ Add</button>
+                </div>
+                <div class="offset-0">
+                    <a href="/" type="button" class="a_btnBigger btn-light">Employee's view</a>
+                </div>
+                <div class="row d-flex justify-content-center align-items-center no-gutters ml-auto">
+                    <div class="search"> <i class="fa fa-search"></i> <input type="text" id="search_input"class="form-control" placeholder="Job title"> </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div id="noting">
+        <section class="sectionMain">
+            <div class="container">
+                <div class="contact-wrap w-100 p-md-5 p-4">
+                    <h4>There is no results!</h4>
+                </div>
+            </div>
+        </section>
+                    
+
+    </div>
+    <% ads.reverse().forEach(function(ad) { %>
+    <section class="sectionMain">
+        <div id="createForm"></div>
+            <div class="container">
+                <div id="<%= ad.id %>ad" style="display: block;">
+                    <div class="contact-wrap w-100 p-md-5 p-4">
+                        <div class="col-md-12">
+                            <div class="row no-gutters">
+                                <div class="form-group col-md-11 no-gutters findtitle">
+                                    <h3><%= ad.title %></h3>
+                                </div>
+                                <button id="delete<%= ad.id %>" onclick="deleteRealAd('<%= ad.id %>')" class="close" type="button"></button>
+                            </div>
+                            <div class="contactForm">
+                                <div class="ad-group">
+                                    
+                                    <div class="" id="<%= ad.id %>showMoreContent">
+                                        <div>
+                                            <label class="label">Company:</label>
+                                            <p>
+                                                <%= ad.companyName %>
+                                            </p>
+                                        </div>
+                                        <div>
+                                            <label class="label">Description:</label><br>
+                                            <p>
+                                                <%= ad.description %>
+                                            </p>
+                                        </div>
+                                        <div>
+                                            <label class="label">Working time:</label><br>
+                                            <p>
+                                                <%= ad.workingTime %> h/week
+                                            </p>
+                                        </div>
+                                        <div>
+                                            <label class="label">Wage:</label><br>
+                                            <p>
+                                                <%= ad.wage %> $
+                                            </p>
+                                        </div>
+                                        <div>
+                                            <label class="label">Location:</label><br>
+                                            <p>
+                                                <%= ad.location %> 
+                                            </p>
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                            <div class="row col-md-12">
+                                <div class="align-self-end show-more mt-4">
+                                    <button type="button" class="btn btn-primary chngName" id="<%= ad.id %>showMoreBtn" onclick="showMore('<%= ad.id %>')">Learn less</button>
+                                </div>
+                                <div class="align-self-end mt-4 offset-1">
+                                    <button type="button" id="<%= ad.id %>updateButton" class="btn btn-primary" onclick="switchVisible('<%= ad.id %>')">update</button>
+                                </div>
+                                <div class="align-self-end offset-1 mt-4">
+                                    <button type="button" id="<%= ad.id %>applyBtn" class="btn btn-primary" onclick="seeApplications('<%= ad.id %>')">Applications</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="<%= ad.id %>updateBtn" style="display: none;">
+                    <div class="contact-wrap w-100 p-md-5 p-4">
+                        <div class="col-md-12">
+                            <form id="<%= ad.id %>updateForm">
+                                <div class="contactForm">
+                                    <div class="row no-gutters">
+                                        <div class="form-group col-md-11 no-gutters">
+                                            <input id="title" name="title" type="text" class="form-control titleForm" placeholder="Title *" value="<%= ad.title %>" required />
+                                        </div>
+                                        <button id="delete<%= ad.id %>" onclick="deleteRealAd('<%= ad.id %>')" class="close" type="button"></button>
+                                    </div>
+                                    <div class="ad-group">
+                                            <div>
+                                                <label class="label">Company:</label>
+                                                <div class="form-group">
+                                                    <input id="companyName" name="companyName" type="text" class="form-control inputForm" placeholder="Company Name *" value="<%= ad.companyName %>" required />
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <label class="label">Description:</label><br>
+                                                <div class="form-group">
+                                                    <textarea id="<%= ad.id %>description" name="description" type="text" class="form-control inputForm" class="form-control" placeholder="Description of the job *" required ><%= ad.description %></textarea>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <label class="label">Working time:</label><br>
+                                                <div class ="row no-gutters">
+                                                    <div class="form-group col-md-1 no-gutters">
+                                                        <input id="workingTime" name="workingTime" type="number" class="form-control inputForm" placeholder=" *" value="<%= ad.workingTime %>" required />
+                                                    </div>
+                                                    <p class = "offset-0">h/week</p>  
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <label class="label">Wage:</label><br>
+                                                <div class ="row no-gutters">
+                                                    <div class="form-group col-md-1 no-gutters">
+                                                        <input id="wage" name="wage" type="number" class="form-control inputForm" placeholder=" *" value="<%= ad.wage %>" required />
+                                                    </div>
+                                                    <p class = "offset-0">$</p>  
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <label class="label">Location:</label><br>
+                                                <div class="form-group">
+                                                    <input id="location" name="location" type="text" class="form-control" placeholder="Location *" value="<%= ad.location %>" required />
+                                                </div> 
+                                            </div>
+                                        
+                                    </div>
+                                </div>
+
+                                <div class="row col-md-12">
+                                    <div class="align-self-end show-more mt-4">
+                                        <input id="submitButton" type="submit" class="btn btn-primary"  value="Save changes"/>
+                                    </div>
+                                    <div class="align-self-end mt-4 offset-1">
+                                        <button type="button" class="btn btn-primary" onclick="switchVisible('<%= ad.id %>')">Back to original</button>
+                                    </div>
+                                </div>
+                            </form>    
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="<%= ad.id %>aplicationsTable" style = "display: none;">
+
+                <section class="sectionAplyForm">
+                    <div class="container">
+                        <div class="contact-wrap w-100 p-md-5 p-4">
+                            <div class="panel panel-primary">
+                                <div class="mb-4 row col-md-12">
+                                <h1>Applications</h1>
+                                <button onclick="UNseeApplications(`<%= ad.id %>`)" class="close" type="button"></button>
+                                <div class="contact-wrap w-100 p-md-5 p-4">
+                                        <div class="col-md-12">
+                                    <table class="table-hover findtable">
+                                        <thead class="thead-dark">
+                                            <tr>
+                                            <th scope="col">First Name</th>
+                                            <th scope="col">Last Name</th>
+                                            <th scope="col">Description</th>
+                                            <th scope="col">Gender</th>
+                                            <th scope="col">Email</th>
+                                            <th scope="col">Phone</th>
+                                            <th scope="col" class="text-end">Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id = "dispalayOnlyID">
+                                            <% apps.forEach(function(app) { %>
+                                                <% if (ad.id == app.adID ) { %>
+                                                <tr>
+                                                <td ><%= app.firstName %></td>
+                                                <td><%= app.lastName %></td>
+                                                <td><textarea readonly class="form-control"><%= app.description %></textarea></td>
+                                                <td><%= app.gender %></td>
+                                                <td><%= app.email %></td>
+                                                <td><%= app.phone %></td>
+                                                <td class="text-end">
+                                                    <div class="row">
+                                                        <div class ="offset-0">
+                                                            <button  onclick="deleteApp('<%= app.id %>')"type="button" class="btn btn-primary btn-small"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
+                                                                <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"/>
+                                                              </svg></button>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                </tr>
+                                            <% } %>
+                                            <% }) %>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+            </div>
+    </section>
+    <% }) %>
+
+    
+
+    <script>
+        var search_input = document.querySelector("#search_input");
+        document.getElementById("noting").style.display = "none";
+
+        search_input.addEventListener("keyup", function(e){
+        var search_item = e.target.value.toLowerCase();
+        var title_items = document.querySelectorAll(".findtitle");
+        var count = 0;
+        title_items.forEach(function(item){
+            if(item.textContent.toLowerCase().indexOf(search_item) != -1){
+                item.closest("section").style.display = "block";
+            }
+            else{
+                item.closest("section").style.display = "none";
+                count++;
+            }
+        })
+        if(count == title_items.length)
+        {
+            document.getElementById("noting").style.display = "block"; 
+        }
+        else
+        {
+            document.getElementById("noting").style.display = "none";
+        }
+
+        });
+
+    </script>
+    <script src="https://rawgit.com/jackmoore/autosize/master/dist/autosize.min.js"></script>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/popper.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery.validate.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+    <!-- Data Tables -->    
+    <script src="../js/scripts.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
+    <script src="../js/datatables-simple-demo.js"></script>
+
+    <script>
+        function seeApplications(idAd) {
+            if(document.getElementById(idAd + "aplicationsTable").style.display == "none")
+            {
+                document.getElementById(idAd + "aplicationsTable").style.display = "block"; 
+            }
+
+
+    }
+    </script>
+
+    <script>
+        function UNseeApplications(idAd) {
+            if(document.getElementById(idAd + "aplicationsTable").style.display == "block")
+            {
+                document.getElementById(idAd + "aplicationsTable").style.display = "none"; 
+            }
+        } 
+    </script>
+    <script>
+        function deleteRealAd(id) 
+        {
+            swal({
+            title: "Are you sure you want to delete this ad?",
+            text: "Once deleted, you will not be able to recover this ad!",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+            })
+            .then((willDelete) => {
+            if (willDelete) {
+                swal("", {
+                icon: "success",
+                });
+                const domain = "localhost";
+                    var afterAds = id;
+
+                    fetch(`http://${domain}:3000/ads/${afterAds}`, {
+                        // mode: "no-cors",
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        method: 'DELETE'
+                    });
+                    setInterval(function(){window.location.reload()}, 1000);
+            } else {
+                return false;
+            }
+            });
+        };
+    </script>
+        <script>
+            function deleteApp(id) 
+            {
+                swal({
+                title: "Are you sure you want to delete this application?",
+                text: "Once deleted, you will not be able to recover this application!",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+                })
+                .then((willDelete) => {
+                if (willDelete) {
+                    swal("", {
+                    icon: "success",
+                    });
+                    const domain = "localhost";
+                        var afterAds = id;
+    
+                        fetch(`http://${domain}:3000/apps/${afterAds}`, {
+                            // mode: "no-cors",
+                            headers: {
+                                'Content-Type': 'application/json',
+                            },
+                            method: 'DELETE'
+                        });
+                        setInterval(function(){window.location.reload()}, 1000);
+                } else {
+                    return false;
+                }
+                });
+            };
+        </script>
+    <script>
+        function showMore(id) {
+            var btn = document.getElementById(id + "showMoreBtn");
+            var content = document.getElementById(id + "showMoreContent");
+        
+            if(btn.innerText == "Learn more"){
+                btn.innerText = "Learn less"; 
+                content.classList.remove('hideContent');
+            } 
+            else {
+                btn.innerText = "Learn more";
+                content.classList.add('hideContent');
+            }
+        }
+    </script>
+    <script>
+        function switchVisible(id) {
+            if (document.getElementById(id + 'updateBtn')) {
+
+                if (document.getElementById(id + 'updateBtn').style.display == 'none') {
+                    document.getElementById(id + 'updateBtn').style.display = 'block';
+                    document.getElementById(id + 'ad').style.display = 'none';
+
+                    document.getElementById(id + 'updateForm').reset();
+
+                    var button = document.getElementById(id + 'updateBtn');
+                    button.addEventListener("click", updateData(id));
+                    
+                    autosize(document.getElementById(id + "description"));                    
+
+                    //look if apply button has been clicked
+                    // if yes use sendData function
+                }
+                else {
+                    document.getElementById(id + 'updateBtn').style.display = 'none';
+                    document.getElementById(id + 'ad').style.display = 'block';
+                }
+        }
+        }
+    </script>
+    <script>
+
+
+        function updateData(id) {
+
+            $("#" + id + "updateForm").submit(function(e) {
+                e.preventDefault();
+
+                const data = $("#" + id + "updateForm").serializeArray();
+
+                const obj = {};
+
+                function toJson(arr) {
+
+                    arr.map((element) => {
+                        obj[element.name] = element.value;
+                    })
+                }
+                toJson(data);
+
+                const domain = "localhost";
+                const afterAds = id;
+
+                fetch(`http://${domain}:3000/ads/${afterAds}`, {
+                    // mode: "no-cors",
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    method: 'PUT',
+                    body: JSON.stringify(obj)
+
+                });
+                setInterval(function(){window.location.reload()}, 500);
+            });
+        };
+    </script>
+
+    <script>
+        function createAd() {
+            document.getElementById("createForm").innerHTML =
+                `<div class="container">
+                    <div class="contact-wrap w-100 p-md-5 p-4">
+                        <div class="col-md-12">
+                            <form id ="creatingAdForm">
+                                <div class="contactForm">
+                                    <div class="row no-gutters">
+                                        <div class="form-group col-md-11 no-gutters">
+                                            <input id="title" name="title" type="text" class="form-control titleForm" placeholder="Title *" required />
+                                        </div>
+                                        <button onclick="closeAdForm()" class="close" type="button"></button>
+                                    </div>
+                                    <div class="ad-group">
+                                            <div>
+                                                <label class="label">Company:</label>
+                                                <div class="form-group">
+                                                    <input id="companyName" name="companyName" type="text" class="form-control inputForm" placeholder="Company Name *" required />
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <label class="label">Description:</label><br>
+                                                <div class="form-group">
+                                                    <textarea id="descriptionOfNewAd" name="description" type="text" class="form-control inputForm" class="form-control" placeholder="Description of the job *" required ></textarea>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <label class="label">Working time:</label><br>
+                                                <div class ="row no-gutters">
+                                                    <div class="form-group col-md-1 no-gutters">
+                                                        <input id="workingTime" name="workingTime" type="number" class="form-control inputForm" placeholder=" *" required />
+                                                    </div>
+                                                    <p class = "offset-0">h/week</p>  
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <label class="label">Wage:</label><br>
+                                                <div class ="row no-gutters">
+                                                    <div class="form-group col-md-1 no-gutters">
+                                                        <input id="wage" name="wage" type="number" class="form-control inputForm" placeholder=" *" required />
+                                                    </div>
+                                                    <p class = "offset-0">$</p>  
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <label class="label">Location:</label><br>
+                                                <div class="form-group">
+                                                    <input id="location" name="location" type="text" class="form-control" placeholder="Location *" required />
+                                                </div> 
+                                            </div>
+                                        
+                                    </div>
+                                </div>
+
+                                <div class="row col-md-12">
+                                    <div class="align-self-end show-more mt-4">
+                                        <input id="submitButton" type="submit" class="btn btn-primary"  value="Create the Ad"/>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>`;
+        }
+    </script>
+    <script>
+    function closeAdForm() {
+        document.getElementById("createForm").innerHTML = "";
+    } 
+    </script>
+    <script>
+ 
+ 
+        //look if apply button has been clicked
+       // if yes use sendData function
+
+       function sendData() {
+        autosize(document.getElementById("descriptionOfNewAd"));
+           $('#creatingAdForm').submit(function(e) {
+               e.preventDefault();
+
+               const data = $(this).serializeArray();
+
+               const obj = {};
+
+               function toJson(arr) {
+
+                   arr.map((element) => {
+                       obj[element.name] = element.value;
+                   })
+               }
+               toJson(data);
+
+               const domain = "localhost";
+
+               fetch(`http://${domain}:3000/ads/new`, {
+                   // mode: "no-cors",
+                   headers: {
+                       'Content-Type': 'application/json',
+                   },
+                   method: 'POST',
+                   body: JSON.stringify(obj)
+
+               });
+               setInterval(function(){window.location.reload()}, 500);
+           });
+       };
+   </script> 
+    
+</body>
+
+</html>
